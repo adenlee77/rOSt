@@ -14,7 +14,9 @@ fn panic(_info: &PanicInfo) -> ! {
 #[no_mangle] // don't mangle the name of this function
 pub extern "C" fn _start() -> ! {
     // this function is the entry point, since the linker looks for a function named '_start' by default
-    vga_buffer::print_something();
+    use core::fmt::Write;
+    vga_buffer::WRITER.lock().write_str("Hello").unwrap();
+    write!(vga_buffer::WRITER.lock(), ", some numbers: {} {}", 42, 1.337);
 
     loop {}
 }
