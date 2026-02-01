@@ -35,6 +35,8 @@ fn panic(info: &PanicInfo) -> ! {
 pub extern "C" fn _start() -> ! {
     // this function is the entry point, since the linker looks for a function named '_start' by default
     println!("Hello World{}", "!");
+    print!("Aden ");
+    println!("is the best");
 
     #[cfg(test)] // allows cargo test to call renamed function through _start
     test_main();
